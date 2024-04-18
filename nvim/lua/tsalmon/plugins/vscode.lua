@@ -13,5 +13,6 @@ return {
                 Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
             }
         })
+        vim.cmd([[colorscheme vscode]])
     end,
 }
