@@ -24,7 +24,7 @@ return {
 
         require('mason').setup()
         require('mason-lspconfig').setup({
-            ensure_installed = { 'clangd', 'lua_ls', 'rust_analyzer'},
+            ensure_installed = { 'clangd', 'lua_ls', 'rust_analyzer', 'jdtls'},
             handlers = {
                 lsp_zero.default_setup,
             },
@@ -94,22 +94,6 @@ return {
                 { name = 'cmdline' }
             })
         })
-
-        lsp.on_attach(function(client, bufnr)
-            local opts = { buffer = bufnr, noremap = true, silent = true }
-            -- lsp.async_autoformat(client, bufnr)
-            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-            vim.keymap.set("n", "<leader>vs", function() vim.lsp.buf.workspace_symbol() end, opts)
-            vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-            vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-            vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-            vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-            vim.keymap.set("n", "<leader>vr", function() vim.lsp.buf.references() end, opts)
-            vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-            vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-            vim.keymap.set({ "n", "v" }, "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, opts)
-        end)
 
         local get_intelephense_license = function()
             local f = assert(io.open(os.getenv('HOME') .. '/.intelephense', 'r'))
