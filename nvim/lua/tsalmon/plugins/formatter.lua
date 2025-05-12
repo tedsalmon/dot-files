@@ -2,7 +2,7 @@ return {
     "mhartington/formatter.nvim",
     opts = {
         filetype = {
-            --javascript = prettier, 
+            --javascript = prettier,
             --css = prettier,
             --scss = prettier,
             --json = prettier,
@@ -19,9 +19,6 @@ return {
                 end
             },
         },
-        ["*"] = {
-            -- require("formatter.filetypes.any").remove_trailing_whitespace
-        }
     }
 }
 

@@ -9,7 +9,7 @@ vim.keymap.set('n', '<leader>b', ':enew<enter>', { noremap = false })
 -- Files
 vim.keymap.set("n", "E", "$", { noremap = false })
 vim.keymap.set("n", "A", "^", { noremap = false })
-vim.keymap.set("n", "WW", ":w!<enter>")
+vim.keymap.set("n", "<leader>w", ":w!<enter>")
 -- System Clipboard
 vim.keymap.set('n','y','"+y')
 vim.keymap.set('n','yy','"+yy')

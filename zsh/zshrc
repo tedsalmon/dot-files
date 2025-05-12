@@ -1,0 +1,38 @@
+# History
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+HISTFILE=$HOME/.zhistory
+HISTSIZE=10000
+SAVEHIST=100000
+# Options -- change directory without `cd` and do not beep on error
+setopt autocd extendedglob NO_BEEP PROMPT_SUBST
+# Auto-completion
+# Highlight the current autocomplete option
+zstyle ':completion:*' menu select list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' completer _extensions _complete
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/.zsh/cache/.zcompcache"
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+# Initialize the autocompletion
+autoload -Uz compinit && compinit -i
+# Arrow keys for auto completion
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+compinit
+alias qfind='find . -type f -print0 | xargs -0 grep -Hn'
+alias kopen=code
+alias psql='docker exec -u postgres -it postgres psql'
+function dshell() { PARAM=$1; docker exec -u web -it $PARAM /bin/bash -c "export COLUMNS=`tput cols`; export LINES=`tput lines`; exec bash -l"; }
+function drootshell() { PARAM=$1; docker exec -it $PARAM /bin/bash -c "export COLUMNS=`tput cols`; export LINES=`tput lines`; exec bash -l"; }
+source $HOME/.zsh/plugins/git/gitfast.plugin.zsh
+ZSH_THEME_GIT_PROMPT_PREFIX="%{%F{green}%}‹"
+ZSH_THEME_GIT_PROMPT_SUFFIX="›%f"
+# Prompt
+PS1='%n@%m:%0~%  $(git_prompt_info)%(!.#.$) '
+
+export PATH="/opt/microchip/xc16/v2.10/bin:/home/tsalmon/.cache/activestate/bin:/home/tsalmon/.komodoide/12.0/XRE/state/bin:$PATH:/usr/libexec/gcc/x86_64-redhat-linux/13/"

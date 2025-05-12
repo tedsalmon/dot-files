@@ -7,6 +7,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     command = "FormatWrite",
 })
 
+-- Trailing Whitespace removal
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = {"*"},
+    callback = function()
+        local save_cursor = vim.fn.getpos(".")
+        pcall(function() vim.cmd [[%s/\s\+$//e]] end)
+        vim.fn.setpos(".", save_cursor)
+    end,
+})
+
 -- Lint
 vim.api.nvim_create_autocmd({"BufEnter", "BufWritePost", "InsertLeave"}, {
     group = cmd_group,
