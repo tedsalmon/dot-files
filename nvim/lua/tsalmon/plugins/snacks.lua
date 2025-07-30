@@ -4,10 +4,12 @@ return {
     lazy = false,
     keys = {
         {"<leader>q", function() Snacks.bufdelete() end, desc = "Buffer delete", mode="n"},
-        {"<leader>g", function() Snacks.explorer.reveal() end, desc = "Go To File", mode="n"}
+        {"<leader>c", function() Snacks.explorer.reveal() end, desc = "Toggle Explorer", mode="n"}
     },
     opts = {
-        bigfile = { enabled = true },
+        bigfile = {
+            enabled = true
+        },
         bufdelete = {
             enabled = true
         },
@@ -15,18 +17,34 @@ return {
             enabled = true,
             replace_netrw = true
         },
-        indent = { enabled = true },
-        input = { enabled = true },
+        indent = {
+            enabled = true
+        },
+        input = {
+            enabled = true
+        },
         picker = {
             enabled = true,
             hidden = true,
             ignored = true
         },
-        notifier = { enabled = true },
-        quickfile = { enabled = true },
-        scope = { enabled = true },
-        scroll = { enabled = true },
-        statuscolumn = { enabled = true },
-        words = { enabled = true },
+        notifier = {
+            enabled = true
+        },
+        quickfile = {
+            enabled = true
+        },
+        scope = {
+            enabled = true
+        },
+        scroll = {
+            enabled = true
+        },
+        statuscolumn = {
+            enabled = true
+        },
+        words = {
+            enabled = true
+        },
     },
 }

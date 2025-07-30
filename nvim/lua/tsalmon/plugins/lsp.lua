@@ -109,13 +109,6 @@ return {
             init_options = {
                 licenceKey = get_intelephense_license()
             },
-            -- settings = {
-            --     intelephense = {
-            --         environment = {
-            --             phpVersion = "8.2"
-            --         }
-            --     }
-            -- },
             cmd = { 'docker', 'container', 'run', '--interactive', '--rm', '--workdir=' .. vim.fn.getcwd(), '--volume=' .. vim.fn.getcwd() .. ':' .. vim.fn.getcwd(), 'alpine-intelephense' },
             root_dir = require('lspconfig/util').root_pattern(".git", vim.fn.getcwd()),
             filetypes = { 'php', 'phtml' },
